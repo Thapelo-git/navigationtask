@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { StyleSheet,View,Text, FlatList,TouchableOpacity ,SafeAreaView,Modal,
-    LayoutAnimation, 
+    LayoutAnimation, Dimensions,Pressable,
     ScrollView} from 'react-native';
 import { Header,Button } from 'react-native-elements';
 import Reviewform from './reviewform';
@@ -14,28 +14,18 @@ import { ListItem ,ImageBackground,Image} from 'react-native-elements';
 //import { Tab } from 'react-native-elements';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import About from "../screens/about";
-
+import WavyHeader from '../routes/WavyHeader.jsx';
 import Contact from "../screens/Contact";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ReviewDetails from './reviewDetails';
 
 
-
-
-
-// 
 export default function Home({navigation}){
     
     const [modalOpen,setModalOpen]=useState(false)
     const [reviews,setReviews]=useState([])
-    // {name:'molobe',Age:3,surname:'the dancing side',
-    //     location:'motinti',gender:'female',
-    //     key:'1'},
-    //     {name:'koketso',Age:2,surname:'the playing side',
-    //     location:'tambo',gender:'male',key:'2',
-
-    //     }
+    
     
 const addReview =(review)=>{
     review.key=Math.random().toString()
@@ -44,34 +34,46 @@ const addReview =(review)=>{
 
     })
 }
-// const [isRender,setisRender]=useState(false)
-// const [isModalVisible,setisModalVisible] =useState(false)
-// const [inpuText,setinputText]=useState();
-// const [editItem,seteditItem]= useState();
 
-// const onPressItem=(item)=>{
-//     setisModalVisible(true);
-//     setinputText(item.text)
-//     seteditItem(item.key)
-// }
-
-// const renderItem =(item,index)=>{
-// return(
-//     <TouchableOpacity style={styles.item}onPress={()=> navigation.navigate('home',item)}>
-//                       <Text style={styles.text}>{item.name}  </Text>
-//                   </TouchableOpacity>
-// )
-// }
 
 
     return(
         <SafeAreaView style={{flex:1,backgroundColor:'#fff'}}>
-          <Image
-          style={{width:'100%',height:'100%',flexDirection:'row',
+              <View style={styles.container1}>
+      <WavyHeader
+        customStyles={styles.svgCurve}
+        customHeight={160}
+        customTop={130}
+        customBgColor="#00cba9"
+        customWavePattern="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+      />
+      <View style={styles.headerContainer}>
+      {/* <TouchableOpacity style={{backgroundColor:'blue',
+           justifyContent:'flex-start',width:55,height:50,borderRadius:10,
+           }} onPress={()=>setModalOpen(true)}>
+                  <Icon name="add" size={30} color='black'
+                   />
+                  <Text>Adduser</Text>
+                  </TouchableOpacity> */}
+                  {/* <TouchableOpacity onPress={()=>setModalOpen(true)}>
+        <Text style={styles.headerText}>Add User</Text>
+        <Icon name="add" size={30} color='black'
+                   />
+        </TouchableOpacity> */}
+        <Pressable onPress={()=>setModalOpen(true)} style={styles.logout}>
+              <Text style={styles.logoutText}>
+              Add User
+              </Text>
+          </Pressable>
+      </View>
+    </View>
+          {/* <Image
+          style={{width:'100%',height:'80%',flexDirection:'row',
         alignItems:'center',justifyContent:'center'}}
           source={require('../assets/pic2.png')}>
+           </Image> */}
            <ScrollView>
-               <View style={{flexDirection:'row',width:'100%',
+               {/* <View style={{flexDirection:'row',width:'100%',
                borderRadius:20,justifyContent:'space-between',
                backgroundColor:'gainsboro',marginBottom:'100%'}}>
            <Icon name="groups" size={100} color='black' 
@@ -83,7 +85,7 @@ const addReview =(review)=>{
                    />
                   <Text>Adduser</Text>
                   </TouchableOpacity>
-                  </View>
+                  </View> */}
         <View style={styles.container}> 
         {/* <FlatList 
               data={reviews}
@@ -215,7 +217,7 @@ const addReview =(review)=>{
            
         </View>
         </ScrollView>
-        </Image>
+        
     
         </SafeAreaView>
     )
@@ -223,14 +225,36 @@ const addReview =(review)=>{
 
 const styles =StyleSheet.create({
     container:{
-        padding:24,
+        padding:14,
         flexDirection:'row',width:'100%',
                borderRadius:20,
                justifyContent:'space-between',
                backgroundColor:'gainsboro',
-               marginBottom:'60%'
+            //    marginBottom:0
+            marginTop:260
+         
 
     },
+    container1: {
+        flex: 1,
+        backgroundColor: '#fff'
+      },
+      svgCurve: {
+        position: 'absolute',
+        width: Dimensions.get('window').width
+      },
+      headerContainer: {
+        marginTop: 50,
+        marginHorizontal: 10,
+        alignItems:'center'
+      },
+      headerText: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: '#fff',
+        textAlign: 'center',
+        marginTop: 80
+      },
     modalContent: {
         width:'100%',
         // paddingTop:38,
@@ -242,9 +266,27 @@ const styles =StyleSheet.create({
         //   alignItems:'center',
         //   justifyContent:'center'
 
-    },listItem:{
+    },
+    logout : {
+        color: 'black',
+        paddingTop:23,borderRadius: 10,
+        width: '40%',
+        backgroundColor: 'white',
+        padding: 30,
+        textAlign: "center",
+        textTransform: "uppercase",
+        alignItems:'center'
+    },
+    logoutText : {
+        textTransform: "uppercase",
+        color: 'black',
+        fontWeight: "900",
+        
+
+    },
+    listItem:{
         padding:10,
-        backgroundColor:'pink',
+        backgroundColor:'#00cba9',
         flexDirection:'row',
         elevation:12,
         borderRadius:7,
