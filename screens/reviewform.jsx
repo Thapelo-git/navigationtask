@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet,View,Text,TouchableOpacity} from 'react-native';
+import { StyleSheet,View,Text,TouchableOpacity, ScrollView} from 'react-native';
 import { TextInput,Button } from 'react-native-paper';
 import {Formik} from 'formik';
 import * as yup from 'yup'
@@ -38,7 +38,7 @@ const reviewform = ({addReview}) => {
 
                    {(props)=>(
                        
-                       
+                       <ScrollView>
                        <View >
                            <TextInput 
                            style={styles.input}
@@ -105,6 +105,7 @@ const reviewform = ({addReview}) => {
                            </Button>
                            <Text style={{fontSize:10}}>double click to submit</Text>
                        </View>
+                       </ScrollView>
                    )}
                     
                    </Formik>

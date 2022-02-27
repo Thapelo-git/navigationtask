@@ -96,7 +96,8 @@ const addReview =(review)=>{
         <Modal visible={modalOpen} animationType='slide' >
             <View style={styles.modalContent}>
             <TouchableOpacity
-            style={{backgroundColor:'gainsboro',justifyContent:'flex-start',width:40,height:50,borderRadius:10}} 
+            style={{justifyContent:'flex-start',width:40,height:50,borderRadius:10,
+        left:150}} 
             onPress={()=>setModalOpen(false)}>
                   <Icon name="close" size={30} color='black' />
                   </TouchableOpacity> 
@@ -137,7 +138,7 @@ const addReview =(review)=>{
         <TouchableOpacity onPress={()=> navigation.navigate('ReviewDetails',item)}>
         <Text style={{paddingTop:3,fontSize:10}}>double click and swipe left to delete</Text>
                      <Text style={{fontWeight:'bold',fontSize:20}}>{item.name}  {item.surname}</Text>
-                     <Icon name="edit" size={30}/>
+                     {/* <Icon name="edit" size={30}/> */}
               </TouchableOpacity>
               
                 {/* <Button style={{width:'100%'}} title={"View"} color ='pink' onPress={()=>navigation.navigate('ReviewDetails',item)}/> */}
@@ -166,14 +167,14 @@ const addReview =(review)=>{
                      
                   
                   
-                     text="Delete"
-                     textStyle={{fontWeight: 'bold', color: 'black',backgroundColor:'red'}}
+                    //  text="Delete"
+                    //  textStyle={{fontWeight: 'bold', color: 'black',backgroundColor:'red'}}
                    
                     
                      />
-                      {/* <TouchableOpacity onPress={()=>setReviews(reviews.filter(itemm => itemm.key != item.key))}>
-                  <Icon name="delete" size={30} color='red' />
-                  </TouchableOpacity>  */}
+                      <TouchableOpacity onPress={()=>setReviews(reviews.filter(itemm => itemm.key != item.key))}>
+                  <Icon name="delete" size={40} color='red' />
+                  </TouchableOpacity> 
                      
                      
                     
